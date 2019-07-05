@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>funny circle</title>
+</head>
+<body>
+<canvas id  = "myCanvas" width="1366"height="608"style="border: 3px solid black"></canvas>
+<script>
+    function Circle(x,y,radius) {
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+    }
+    function getRandomHex() {
+        return Math.floor(Math.random()*255);
+    }
+    function getColor() {
+        let red = getRandomHex();
+        let green = getRandomHex();
+        let blue = getRandomHex();
+        return "rgb(" + red + ',' + green + ',' + blue + ")";
+    }
+    function CreateCircle() {
+        let ctx = document.getElementById("myCanvas").getContext("2d");
+        let radius = Math.floor(Math.random()*150);
+        let x = Math.random()*window.innerWidth;
+        let y = Math.random()*window.innerHeight;
+        let circle = new Circle(x,y,radius);
+        let color = getColor();
+        ctx.beginPath();
+        ctx.arc(circle.x,circle.y,circle.radius,0,2*Math.PI);
+        ctx.fillStyle = color;
+        ctx.fill();
+    }
+    function createMultiCircle() {
+        for(let i = 0; i<30;i++)
+            CreateCircle();
+    }
+    createMultiCircle();
+</script>
+</body>
+</html>
